@@ -15,12 +15,10 @@ import {
 } from "react-icons/fa";
 import { useCardDetails } from "../../hooks/useCardDetails";
 import ContactItem from "../../components/ContactItem";
-
 const CardDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
-
   const {
     card,
     loading,
@@ -30,14 +28,12 @@ const CardDetailsPage = () => {
     handleLike,
     handleDelete,
   } = useCardDetails(id);
-
   const onDeleteCard = async () => {
     const success = await handleDelete();
     if (success) {
       navigate("/my-cards");
     }
   };
-
   if (loading) {
     return (
       <div className="flex h-96 items-center justify-center">
@@ -45,7 +41,6 @@ const CardDetailsPage = () => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="container mx-auto mt-10 text-center">
@@ -56,7 +51,6 @@ const CardDetailsPage = () => {
       </div>
     );
   }
-
   if (!card) {
     return (
       <div className="container mx-auto mt-10 text-center">
@@ -67,9 +61,7 @@ const CardDetailsPage = () => {
       </div>
     );
   }
-
   const fullAddress = `${card.address.street} ${card.address.houseNumber}, ${card.address.city}, ${card.address.country}`;
-
   return (
     <div className="container mx-auto my-10 max-w-4xl px-4">
       <div className="overflow-hidden rounded-xl bg-white shadow-lg dark:bg-gray-800">
@@ -80,7 +72,6 @@ const CardDetailsPage = () => {
             alt={card.image.alt || card.title}
             className="h-64 w-full object-cover"
           />
-
           <div className="absolute top-4 right-4 flex gap-2">
             {isLoggedIn && (
               <button
@@ -98,7 +89,6 @@ const CardDetailsPage = () => {
                 )}
               </button>
             )}
-
             {canEditDelete && (
               <>
                 <button
@@ -122,7 +112,6 @@ const CardDetailsPage = () => {
             )}
           </div>
         </div>
-
         {/* Card content */}
         <div className="p-6">
           <h1 className="mb-2 text-3xl font-bold text-gray-800 dark:text-white">
@@ -135,7 +124,6 @@ const CardDetailsPage = () => {
           <p className="mb-6 whitespace-pre-line text-gray-700 dark:text-gray-300">
             {card.description}
           </p>
-
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ContactItem icon={<FaPhone />} href={`tel:${card.phone}`}>
               {card.phone}
@@ -144,7 +132,6 @@ const CardDetailsPage = () => {
             <ContactItem icon={<FaEnvelope />} href={`mailto:${card.email}`}>
               {card.email}
             </ContactItem>
-
             {card.web && (
               <ContactItem
                 icon={<FaGlobe />}
@@ -157,10 +144,8 @@ const CardDetailsPage = () => {
                 {card.web}
               </ContactItem>
             )}
-
             <ContactItem icon={<FaMapMarkerAlt />}>{fullAddress}</ContactItem>
           </div>
-
           {/* Map */}
           <div className="mb-6 h-64 rounded-lg bg-gray-200">
             <iframe
@@ -172,12 +157,10 @@ const CardDetailsPage = () => {
               className="rounded-lg"
             ></iframe>
           </div>
-
           <div className="mt-6 flex justify-between">
             <Button color="light" onClick={() => navigate(-1)}>
               Back
             </Button>
-
             {isLoggedIn && (
               <Button color={isLiked ? "light" : "blue"} onClick={handleLike}>
                 {isLiked ? (
@@ -203,5 +186,4 @@ const CardDetailsPage = () => {
     </div>
   );
 };
-
 export default CardDetailsPage;

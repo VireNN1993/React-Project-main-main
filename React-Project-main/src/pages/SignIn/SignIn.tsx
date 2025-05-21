@@ -32,46 +32,29 @@ const SignIn = () => {
       setIsLoading(true);
       setServerError("");
 
-      // שליחת בקשת התחברות ישירות ל-API
       const response = await axios.post(`${BASE_URL}/users/login`, data);
-
-      // קבלת הטוקן מתגובת השרת
       const token = response.data;
-      console.log(
-        "Login successful. Token received:",
-        token.substring(0, 20) + "...",
-      );
 
-      // שמירת הטוקן ב-localStorage
       localStorage.setItem("token", token);
 
-      // פענוח הטוקן לקבלת מזהה המשתמש
       const decoded = jwtDecode<{ _id: string }>(token);
-      console.log("Decoded token ID:", decoded._id);
-
-      // הגדרת כותרת אימות לבקשות עתידיות
       axios.defaults.headers.common["x-auth-token"] = token;
 
-      // קבלת פרטי המשתמש המלאים מהשרת
       const { data: userData } = await axios.get(
         `${BASE_URL}/users/${decoded._id}`,
       );
-      console.log("User data received:", userData);
 
-      // עדכון מצב המשתמש ב-Redux
       dispatch(setUser(userData));
 
       toast.success("התחברת בהצלחה!");
       navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
-
       if (axios.isAxiosError(error) && error.response) {
         setServerError(error.response.data || "שם משתמש או סיסמה לא נכונים");
       } else {
         setServerError("שגיאה בהתחברות, נסה שוב מאוחר יותר");
       }
-
       toast.error("ההתחברות נכשלה");
     } finally {
       setIsLoading(false);
