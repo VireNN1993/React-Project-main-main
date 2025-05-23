@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import AuthProvider from "./auth/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Footer } from "flowbite-react";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <AuthProvider>
         <Navbar />
         <AppRouter />
+        <Footer />
         <ToastContainer position="top-center" />
       </AuthProvider>
     </BrowserRouter>
