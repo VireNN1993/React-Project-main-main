@@ -47,6 +47,7 @@ const AnimationWrapper: React.FC<AnimationWrapperProps> = ({
 
     return () => {
       if (elementRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(elementRef.current);
       }
     };
