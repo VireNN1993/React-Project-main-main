@@ -97,8 +97,6 @@ export const useEditProfile = (onSuccess: () => void) => {
       toast.success("Profile updated successfully");
       onSuccess(); // קריאה לפונקציה מותאמת אישית לאחר הצלחה
     } catch (error) {
-      console.error("Update failed:", error);
-
       if (axios.isAxiosError(error) && error.response?.data?.message) {
         toast.error(error.response.data.message);
       } else {

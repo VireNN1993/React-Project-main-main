@@ -29,7 +29,6 @@ export const useHomeCards = (cardsPerPage: number) => {
         const { data } = await axios.get<CardType[]>(`${BASE_URL}/cards`);
         dispatch(setAllCards(data));
       } catch (error: unknown) {
-        console.error("Failed to fetch cards:", error);
         if (axios.isAxiosError(error)) {
           setError(error.response?.data?.message || "Failed to load cards");
         } else if (error instanceof Error) {

@@ -45,7 +45,6 @@ const MyCards = () => {
 
         setCards(data);
       } catch (error) {
-        console.error("Failed to fetch cards:", error);
         if (axios.isAxiosError(error)) {
           setError(error.response?.data?.message || "Failed to load cards");
         } else if (error instanceof Error) {

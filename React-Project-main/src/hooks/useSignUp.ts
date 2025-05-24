@@ -32,7 +32,6 @@ export const useSignUp = (onSuccess: () => void) => {
       let errorMessage = "Registration failed. Please try again.";
 
       if (axios.isAxiosError(error) && error.response) {
-        console.error("Signup failed:", error.response.data);
         // Check for specific errors
         if (error.response.status === 400) {
           // If server returns an error object with a message
@@ -54,10 +53,6 @@ export const useSignUp = (onSuccess: () => void) => {
               "This email is already registered. Please use a different email or try to sign in.";
           }
         }
-      } else if (error instanceof Error) {
-        console.error("Signup failed:", error.message);
-      } else {
-        console.error("Signup failed:", error);
       }
 
       setServerError(errorMessage);

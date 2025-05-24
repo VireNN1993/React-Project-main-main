@@ -64,7 +64,6 @@ export const useEditCard = (id: string | undefined) => {
           zip: data.address.zip,
         });
       } catch (error: unknown) {
-        console.error("Failed to fetch card:", error);
         if (axios.isAxiosError(error)) {
           setError(error.response?.data?.message || "Failed to load card");
         } else if (error instanceof Error) {
@@ -122,13 +121,10 @@ export const useEditCard = (id: string | undefined) => {
       if (axios.isAxiosError(error)) {
         const errorMessage =
           error.response?.data?.message || "Failed to update card.";
-        console.error("API Error:", errorMessage);
         toast.error(errorMessage);
       } else if (error instanceof Error) {
-        console.error("Error:", error.message);
         toast.error(error.message);
       } else {
-        console.error("Unknown error:", error);
         toast.error("An unexpected error occurred");
       }
       return false;

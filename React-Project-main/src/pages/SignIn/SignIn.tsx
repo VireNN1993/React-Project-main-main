@@ -49,7 +49,6 @@ const SignIn = () => {
       toast.success("התחברת בהצלחה!");
       navigate("/");
     } catch (error) {
-      console.error("Login failed:", error);
       if (axios.isAxiosError(error) && error.response) {
         setServerError(error.response.data || "שם משתמש או סיסמה לא נכונים");
       } else {

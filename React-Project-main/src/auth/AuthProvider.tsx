@@ -54,16 +54,17 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
             // Update user state in Redux
             dispatch(setUser(data));
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
           } catch (error) {
-            console.error("Failed to fetch user details:", error);
             toast.error("Error loading user details");
           }
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-          console.error("Error decoding token:", error);
           localStorage.removeItem("token");
         }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        console.error("Auth initialization error:", error);
+        // Silent fail for auth initialization
       }
     };
 

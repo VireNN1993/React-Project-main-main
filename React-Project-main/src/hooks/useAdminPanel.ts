@@ -45,7 +45,6 @@ export const useAdminPanel = () => {
 
       setUsers(data);
     } catch (error) {
-      console.error("Failed to fetch users:", error);
       if (axios.isAxiosError(error)) {
         setError(error.response?.data?.message || "Failed to load users");
       } else if (error instanceof Error) {
@@ -86,8 +85,8 @@ export const useAdminPanel = () => {
       );
 
       toast.success(`User status updated successfully`);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.error("Failed to update user status:", error);
       toast.error("Failed to update user status");
     }
   };
@@ -123,8 +122,8 @@ export const useAdminPanel = () => {
       // Remove user from local list
       setUsers(users.filter((user) => user._id !== userId));
       toast.success("User deleted successfully");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.error("Failed to delete user:", error);
       toast.error("Failed to delete user");
     }
   };

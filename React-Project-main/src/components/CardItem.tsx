@@ -33,7 +33,7 @@ const CardItem = ({ card }: CardItemProps) => {
       : fullAddress;
 
   const handleLikeClick = async (e: React.MouseEvent) => {
-    e.preventDefault(); // חשוב כדי למנוע ניווט
+    e.preventDefault();
     e.stopPropagation();
 
     if (!isLoggedIn || !userData?._id) {
@@ -60,12 +60,11 @@ const CardItem = ({ card }: CardItemProps) => {
       toast.success(
         isLiked ? "Card removed from favorites" : "Card added to favorites",
       );
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      // השב את המצב הקודם במקרה של שגיאה
       setIsLiked(isLiked);
       dispatch(toggleLike({ cardId: card._id, userId: userData._id }));
       toast.error("Failed to update like status");
-      console.error("Like operation failed:", error);
     }
   };
 

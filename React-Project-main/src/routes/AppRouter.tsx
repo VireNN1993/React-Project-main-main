@@ -13,6 +13,8 @@ import AdminPanel from "../pages/AdminPanel/AdminPanel";
 import Page404 from "../pages/Page404/Page404";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import EditProfile from "../pages/UserProfile/EditProfile";
+import PrivacyPolicy from "../pages/Legal/PrivacyPolicy";
+import TermsOfService from "../pages/Legal/TermsOfService";
 
 // Route Guards
 import PrivateRoute from "./PrivateRoute";
@@ -29,6 +31,8 @@ const AppRouter = () => {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/card/:id" element={<CardDetails />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfService />} />
 
       {/* Private routes - for logged in users */}
       <Route element={<PrivateRoute />}>

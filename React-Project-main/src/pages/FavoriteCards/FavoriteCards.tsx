@@ -43,8 +43,8 @@ const FavoriteCards = () => {
           card.likes.includes(userData._id),
         );
         setFavoriteCards(favorites);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        console.error("Failed to fetch favorite cards:", error);
         toast.error("Failed to load your favorite cards");
       } finally {
         setLoading(false);

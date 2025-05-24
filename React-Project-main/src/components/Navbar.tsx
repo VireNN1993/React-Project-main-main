@@ -1,11 +1,5 @@
 // src/components/Navbar.tsx
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarCollapse,
-  NavbarToggle,
-  Button,
-} from "flowbite-react";
+import { Navbar, NavbarCollapse, NavbarToggle, Button } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
@@ -59,14 +53,16 @@ const AppNavbar = () => {
 
   return (
     <Navbar fluid rounded className="shadow-md">
-      <NavbarBrand>
+      <div className="flex items-center">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" className="h-6 sm:h-9" alt="BCard Logo" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-lg font-bold text-white">
+            BC
+          </div>
           <span className="text-xl font-semibold whitespace-nowrap dark:text-white">
             BussinesCards
           </span>
         </Link>
-      </NavbarBrand>
+      </div>
 
       {/* Search bar */}
       <div className="mx-4 hidden max-w-md flex-grow md:block">

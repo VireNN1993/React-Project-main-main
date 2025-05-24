@@ -75,13 +75,10 @@ export const useCreateCard = () => {
       if (axios.isAxiosError(error)) {
         const errorMessage =
           error.response?.data?.message || "Failed to create card.";
-        console.error("API Error:", errorMessage);
         toast.error(errorMessage);
       } else if (error instanceof Error) {
-        console.error("Error:", error.message);
         toast.error(error.message);
       } else {
-        console.error("Unknown error:", error);
         toast.error("An unexpected error occurred");
       }
       return false;

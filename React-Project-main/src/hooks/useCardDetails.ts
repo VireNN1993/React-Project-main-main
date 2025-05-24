@@ -33,7 +33,6 @@ export const useCardDetails = (id: string | undefined) => {
         const { data } = await axios.get<CardType>(`${BASE_URL}/cards/${id}`);
         setCard(data);
       } catch (error: unknown) {
-        console.error("Failed to fetch card details:", error);
         if (axios.isAxiosError(error)) {
           setError(
             error.response?.data?.message || "Failed to load card details",
@@ -87,9 +86,9 @@ export const useCardDetails = (id: string | undefined) => {
 
         return { ...prevCard, likes };
       });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Failed to update like status");
-      console.error("Like operation failed:", error);
     }
   };
 
@@ -109,9 +108,9 @@ export const useCardDetails = (id: string | undefined) => {
 
       toast.success("Card deleted successfully");
       return true; // Return success flag
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Failed to delete card");
-      console.error("Delete operation failed:", error);
       return false;
     }
   };

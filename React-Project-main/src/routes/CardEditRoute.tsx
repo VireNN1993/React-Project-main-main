@@ -48,8 +48,8 @@ const CardEditRoute = () => {
         });
 
         setHasPermission(data.user_id === userData._id);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        console.error("Failed to check permissions:", error);
         setHasPermission(false);
       } finally {
         setLoading(false);
