@@ -42,14 +42,12 @@ const CardItem = ({ card }: CardItemProps) => {
     }
 
     try {
-      // UI עדכון מיידי של ה
       setIsLiked(!isLiked);
       dispatch(toggleLike({ cardId: card._id, userId: userData._id }));
 
-      // עדכון בצד שרת - כותרת האימות הנכונה x-auth-token
       await axios.patch(
         `${BASE_URL}/cards/${card._id}`,
-        {}, // הבקשה ריקה כי השרת מסתמך על מזהה המשתמש מהטוקן
+        {},
         {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
@@ -71,12 +69,17 @@ const CardItem = ({ card }: CardItemProps) => {
   return (
     <Link
       to={`/card/${card._id}`}
-      className="transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className="hover-lift block" // רק class פשוט שהגדרנו
     >
       <Card className="h-full overflow-hidden">
+        {" "}
+        {/* שומר על Flowbite default */}
         <div className="relative">
           <img
-            src={card.image.url || "https://placehold.co/600x300?text=No+Image"}
+            src={
+              card.image.url ||
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop&crop=face"
+            }
             alt={card.image.alt || card.title}
             className="h-48 w-full object-cover"
           />
@@ -104,30 +107,31 @@ const CardItem = ({ card }: CardItemProps) => {
             </div>
           )}
         </div>
-
         <div className="flex flex-col justify-between">
           <div>
-            <h5 className="mb-1 truncate text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-1 line-clamp-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               {card.title}
             </h5>
-            <p className="mb-2 font-normal text-gray-700 dark:text-gray-400">
+            <p className="mb-2 line-clamp-2 font-normal text-gray-700 dark:text-gray-400">
               {card.subtitle}
             </p>
           </div>
 
           <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            <div className="flex items-center gap-1">
+            <div className="mb-1 flex items-center gap-1">
               <span className="text-blue-600">
                 <FaPhone size={12} />
               </span>
-              <span>{card.phone}</span>
+              <span className="line-clamp-1">{card.phone}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <span className="text-blue-600">
                 <FaMapMarkerAlt size={12} />
               </span>
-              <span>{truncatedAddress}</span>
+              <span className="line-clamp-1" title={fullAddress}>
+                {truncatedAddress}
+              </span>
             </div>
           </div>
         </div>

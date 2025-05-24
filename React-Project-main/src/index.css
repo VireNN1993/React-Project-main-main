@@ -1,81 +1,33 @@
-/* Import modular style files */
-@import "./styles/base.css";
-@import "./styles/animations.css";
-@import "./styles/components.css";
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 
-/* Global overrides and app-specific styles */
-* {
-  box-sizing: border-box;
+@custom-variant dark (&:where(.dark, .dark *));
+/* src/index.css */
+
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
 }
 
-html {
-  scroll-behavior: smooth;
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 30, 41, 59;
 }
 
-/* Remove default margins and paddings */
-* {
-  margin: 0;
-  padding: 0;
-}
-
-/* Improved text rendering */
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* Better focus visibility */
-*:focus-visible {
-  outline: 2px solid #667eea;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Hide focus outline when not using keyboard */
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Improve button accessibility */
-button {
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Better image handling */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Smooth transitions for theme switching */
-* {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
   transition:
     background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
+    color 0.3s ease;
 }
 
-/* Print optimizations */
-@media print {
-  * {
-    background: transparent !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  @page {
-    margin: 0.5in;
-  }
+/* סגנונות כלליים נוספים */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
 }

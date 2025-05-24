@@ -10,14 +10,33 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <BrowserRouter basename="/React-Project-main-main">
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-gray-50 dark:bg-gray-900">
         <AuthProvider>
-          <Navbar />
+          {/* Navbar קבוע בחלק העליון */}
+          <header className="sticky top-0 z-50">
+            <Navbar />
+          </header>
+
+          {/* התוכן הראשי */}
           <main className="flex-grow">
             <AppRouter />
           </main>
+
+          {/* Footer */}
           <Footer />
-          <ToastContainer position="top-center" />
+
+          {/* Toast notifications */}
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </AuthProvider>
       </div>
     </BrowserRouter>
